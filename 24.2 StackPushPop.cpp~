@@ -1,0 +1,44 @@
+#include <stack>
+#include <iostream>
+#include <algorithm>
+using namespace std;    
+
+template <typename T>
+void DisplayContents(const T& Input)
+{
+   for_each( Input.cbegin() // auto, cbegin: c++11 
+      , Input.cend()  // cend() is new in C++11 
+     , [](const T::value_type& element) { cout << element << ' ';});
+
+   cout << "| Number of elements: " << Input.size() << endl;
+}
+
+int main()
+{
+    stack<int> stackInts;
+
+    stackInts.push(25);
+    stackInts.push(10);
+    stackInts.push(-1);
+    stackInts.push(5);
+
+    cout << "Elements in stack are: " << endl;
+	DisplayContents(stackInts._Get_container());
+
+    // pop = remove the topmost element
+    cout << endl << "Popping them one after another..." << endl;
+
+    while(stackInts.size() != 0)
+    {
+        cout << "The element at the top is: " << stackInts.top();
+        cout << endl <<  "Removing it from the stack!" << endl;
+
+        // Remove the topmost element
+        stackInts.pop();
+    }
+
+    if(stackInts.empty())
+        cout << endl << "The stack is now empty!";
+
+    return 0;
+}
